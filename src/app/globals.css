@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background:#171717;
+  --foreground:#ffffff ; 
 }
 
 @theme inline {
@@ -14,8 +14,25 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background:#ededed ;
+    --foreground:#0a0a0a ;
+  }
+}
+@media screen and (max-width:768px) {
+  .medical{
+    width: 80%;
+    font-size: 13px;
+  }
+  .medical input{
+    padding: 4px;
+  }
+  .medical button{
+    padding: 4px;
+  }
+  .cta a{
+    padding:8px;
+    font-size: 15px;
+    text-align: center;
   }
 }
 
