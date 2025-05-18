@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background:#171717;
+  --background:blue;
   --foreground:#ffffff ; 
 }
 
@@ -11,17 +11,68 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
+.main1{
+  background: linear-gradient(rgba(5, 79, 129, 0.433), rgba(45, 44, 44, 0.5)),
+        url('/engaging-with-healthcare-workers-realistic-portrait_94628-22180.jpg') !important;
+        background-repeat: no-repeat;
+        background-position: top !important;
+    width: 100%;
+    height: 80vh;
+    background-size: cover !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
 @media (prefers-color-scheme: dark) {
   :root {
-    --background:#ededed ;
-    --foreground:#0a0a0a ;
+    --background:white;
+    --foreground:black;
+  }
+}
+.layout-holder{
+  align-content: center;
+}
+.medical{
+  box-shadow: 1px 2px 2px 2px rgb(146, 144, 144);
+}
+.whyus{
+  box-shadow:1px 2px 2px 2px rgb(146, 144, 144);
+  margin:10px;
+  width:81%;
+  padding:10px;  
+  border-radius:4px;
+}
+@media screen and (max-width:1102px){
+  .medical{
+    width:90%;
+  }
+  .whyus{
+    width:95%;
+  }
+}
+@media screen and (max-width:960px) {
+  .medical{
+    width:60%;
+  }
+  .whyus{
+    width:60%;
+  }
+  .layout-holder{
+    display: flex;
+    align-items: center;
+    flex-direction:column
   }
 }
 @media screen and (max-width:768px) {
   .medical{
     width: 80%;
     font-size: 13px;
+  }
+  .layout-holder{width: 100%;}
+  .whyus{
+    width: 80%;
   }
   .medical input{
     padding: 4px;
