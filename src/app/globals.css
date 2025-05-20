@@ -44,6 +44,25 @@
   padding:10px;  
   border-radius:4px;
 }
+.Googleauth{
+  border:none;
+  color: black;
+  padding: 8px;
+  display:flex;
+  margin-top:10px;
+  justify-content: center;
+  align-items:center;
+  text-transform:capitalize;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  border:1px solid black;
+}
+.Googleauth img{
+  margin-right: 5px;
+}
 @media screen and (max-width:1102px){
   .medical{
     width:90%;
@@ -86,9 +105,156 @@
     text-align: center;
   }
 }
+.cta a:hover{
+  background: rgb(38, 89, 242);
+  color:white;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+.form-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.form{
+  width: 85%;
+  height:95vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: center;
+}
+.form .sec1{
+  background-color:   #fff;
+  width:53%;
+  height: 70vh;
+  border: 4px solid  #f0f1f2 ;
+  box-shadow: 0 -15px 15px rgba(228, 226, 226, 0.734),
+  inset 0 -15px 15px rgba(254, 254, 254, 0.734),
+  0 15px 15px rgba(226, 223, 223, 0.652),
+  inset 0 15px 15px rgba(232, 229, 229, 0.824)8, 0.3
+  ;
+  border-radius: 10%;
+}
+
+.form .sec1 h1{
+  margin-left: 20px;
+  margin-top: 150px;
+  color: #000;
+  font-size:40px;
+}
+.form .sec1 p{
+  margin-top: 10px;
+  margin-left: 20px;
+  color: #000;
+}
+.form .sec2{
+  background-color:  transparent;
+  width:45%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.form .sec2 form{
+width: 80%;
+height: auto;
+padding: 20px 20px;
+box-shadow: 8px 8px 8px 15px gainsboro,
+-10px -10px 10px -1px ;
+;
+display: flex;
+justify-content: center;
+border-radius: 3px;
+flex-direction: column;
+}
+.form .sec2 form input{
+padding: 10px;
+background-color: #fff;
+border: 1px solid gray;
+border-radius: 8px;
+height: 8vh;
+outline:1px solid#21B9D6;
+}
+.input1{
+  margin-bottom: 15px;
+}
+.input2{
+  margin-bottom: 15px;
+}
+.login{
+  border:none;
+  background-color: rgb(50, 115, 235);
+  color: white;
+  padding: 16px;
+  text-transform:capitalize;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.form a{
+  text-align: center;
+  margin-top: 8px;
+  text-decoration: none;
+  color:#21B9D6;
+  border-bottom: 1px solid #21B9D6;
+}
+.form hr{
+  margin-top: 8px;
+}
+.form p{
+  color: #000;
+  margin-top: 15px;
+  margin-bottom:10px;
+}
+.form p span{
+  font-weight: bold;
+}
+@media screen and (max-width:1102px) {
+  .form .sec2 form input{
+    padding: 8px;
+    height:auto;
+  }
+  .login{
+    padding:8px;
+    font-size:14px;
+  }
+  .form p{
+    font-size: 15px;
+  }
+  .form .sec2 form{
+    width: 340px;
+  }
+}
+@media screen and (max-width:768px){
+ .form{
+  flex-direction: column;
+ }
+ .form .sec1{
+  border:none;
+  width: 100%;
+ }
+ .form .sec2{
+  width:100%;
+ }
+ .form .sec2 form{
+  width:100% !important;
+ }
+ .form .sec1 h1{
+  width:100%;
+  font-size:30px;
+  margin-left: 0px;
+}
+.form .sec1 p{
+  margin-left:0px;
+}
 }

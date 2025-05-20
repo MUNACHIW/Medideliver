@@ -10,10 +10,10 @@ export default function Home() {
         </nav>
         <p className="text-center my-4 text-white">Connecting You to Healthcare Providers & relatable  medical couriers</p>
         <div className="flex justify-center align-items-center py-4">
-          <Link className="bg-white text-black p-3  rounded" href="/becomeacaregiver">Become A CareGiver</Link>
+          <Link className="bg-blue-600 text-white p-3  rounded" href="/becomeacaregiver">Become A CareGiver</Link>
         </div>
         <div className="flex justify-center">
-          <Link href="" className="bg-white text-black p-3 m-2  rounded">Create An Account</Link> <Link href="" className="bg-white text-black p-3 m-2  rounded">Become A courier</Link>
+          <Link href="/createaccount" className="bg-white text-black p-3 m-2  rounded">Create An Account</Link> <Link href="/becomeacourier" className="bg-white text-black p-3 m-2  rounded">Become A courier</Link>
         </div>
       </main>
       <div className="layout-holder grid grid-cols-2 ">
