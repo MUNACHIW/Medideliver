@@ -188,6 +188,12 @@ outline:1px solid#21B9D6;
 .input2{
   margin-bottom: 15px;
 }
+.first-section{
+  align-items:center;
+}
+.share-button{
+  
+}
 .login{
   border:none;
   background-color: rgb(50, 115, 235);

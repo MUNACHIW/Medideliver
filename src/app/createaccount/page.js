@@ -26,11 +26,9 @@ export default function Createaccount() {
                             createaccount with google
 
                         </button>
-                        <p style={{ textAlign: "center" }}><span>Become  A Medical Courier</span>
-                            <Link href="/becomeacaregiver"> click the link</Link></p>
+                        <p style={{ textAlign: "center" }}><span>Already have an account</span>
+                            <Link href="/login"> login</Link></p>
                     </form>
-                    <p><span>Become  A Caregiver</span>
-                        <Link href="/becomeacaregiver"> click the link</Link></p>
                 </div>
             </div>
         </section>
