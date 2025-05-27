@@ -23,7 +23,8 @@ export default function CourierApplication() {
             {/* Drag and Drop Upload */}
             <div className="border-2 border-dashed border-blue-500 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:border-blue-700 transition">
                 <ArrowUpTrayIcon className="h-12 w-12 text-blue-500 mb-3" />
-                <p className="text-gray-700 mb-2">Drag and drop your driver's license here</p>
+                <p className="text-gray-700 mb-2">Drag and drop your<p>Driver&#39;s License</p>
+                    license here</p>
 
                 {/* Proper Upload Button */}
                 <label className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition cursor-pointer">
