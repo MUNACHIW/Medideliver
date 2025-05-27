@@ -22,27 +22,16 @@ export default function Becomeacourier() {
                 <h1 className="text-3xl font-semibold text-blue-600 mb-4">General Requirements</h1>
                 <p className="text-gray-700 mb-4">To become a medical courier, you need to meet these requirements:</p>
                 <ol className="list-decimal list-inside space-y-3 text-gray-800">
-                    <li className="flex items-center gap-2">
-                        <span className="font-bold text-blue-500">✔</span> A high school Diploma or GED
-                    </li>
+
                     <li className="flex items-center gap-2">
                         <span className="font-bold text-blue-500">✔</span> Driver&#39;s License
                     </li>
                     <li className="flex items-center gap-2">
                         <span className="font-bold text-blue-500">✔</span> You should have a reliable vehicle
                     </li>
-                    <li className="flex items-center gap-2">
-                        <span className="font-bold text-blue-500">✔</span> Relatable skills & qualities
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <span className="font-bold text-blue-500">✔</span> Relatable duties & responsibilities
-                    </li>
-                    <li className="flex items-center gap-2">
-                        <span className="font-bold text-blue-500">✔</span> Active location
-                    </li>
                 </ol>
                 <div className="flex justify-end w-full">
-                    <Link href="" className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
+                    <Link href="/courier_application" className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
                         Apply
                     </Link>
                 </div>
