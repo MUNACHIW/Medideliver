@@ -7,6 +7,7 @@ export default function CaregiverApplication() {
     const [licenseFile, setLicenseFile] = useState(null);
     const [hasVehicle, setHasVehicle] = useState(false);
     const [dragActive, setDragActive] = useState(false);
+    const [email, setEmail] = useState("");
 
     const handleFileChange = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -31,6 +32,9 @@ export default function CaregiverApplication() {
 
     const handleDragEnter = () => setDragActive(true);
     const handleDragLeave = () => setDragActive(false);
+    function handleChange(event) {
+        setEmail(event.target.value);
+    }
 
     return (
         <div className="container mx-auto max-w-4xl p-6 bg-white rounded-lg mt-6">
@@ -67,6 +71,20 @@ export default function CaregiverApplication() {
                 {licenseFile && (
                     <p className="text-green-600 font-semibold mt-2">{licenseFile.name}</p>
                 )}
+            </div>
+            <div className="mt-6">
+                <label className="block text-gray-700 font-semibold mb-2">
+                    Your Email Address for contact
+                </label>
+                <input
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                    value={email}
+                    placeholder="fill your email address here"
+                    name='email'
+                    onChange={handleChange}
+                />
+
+
             </div>
 
             {/* Submit Button */}
