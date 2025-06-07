@@ -39,7 +39,7 @@ export default function CaregiverApplication() {
     return (
         <div className="container mx-auto max-w-4xl p-6 bg-white rounded-lg mt-6">
             <h1 className="text-3xl font-semibold text-blue-600 mb-4">
-                Apply to Become a Medical Courier
+                Apply to Become a Medical Caregiver
             </h1>
 
             {/* Drag and Drop Upload */}
