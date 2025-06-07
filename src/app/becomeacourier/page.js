@@ -18,7 +18,7 @@ export default function Becomeacourier() {
                 </Link>
             </div>
 
-            <main className="container mx-auto max-w-4xl p-6 bg-white shadow-lg rounded-lg mt-6">
+            <main className="container mx-auto max-w-4xl p-6 bg-white rounded-lg mt-6">
                 <h1 className="text-3xl font-semibold text-blue-600 mb-4">General Requirements</h1>
                 <p className="text-gray-700 mb-4">To become a medical courier, you need to meet these requirements:</p>
                 <ol className="list-decimal list-inside space-y-3 text-gray-800">
