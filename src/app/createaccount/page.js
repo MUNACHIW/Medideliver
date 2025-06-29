@@ -13,7 +13,7 @@ export default function Createaccount() {
                     </p>
                 </div>
                 <div className="sec2">
-                    <form>
+                    <form action="/overview">
                         <input className="input2" type="text" placeholder=" Your name" />
                         <input className="input1" type="text" id="input" placeholder="Email address or Phone number" />
                         <input className="input2" id="password" type="password" placeholder="Password" />

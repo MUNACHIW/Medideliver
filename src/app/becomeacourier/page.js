@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image"
 import { ShareIcon } from "@heroicons/react/24/solid";
 
 export default function Becomeacourier() {
@@ -10,7 +11,16 @@ export default function Becomeacourier() {
         <>
             <div className="first-section flex justify-between items-center nav w-full shadow p-3">
                 <h3 className="text-black text-4xl text-capitalize" style={{ fontFamily: "sans-serif", fontStyle: "italic" }}>
-                    <Link href="/">Medideliver</Link>
+                    <Link href="/" className="flex align-center">
+                        <Image
+                            src="/Aicon.png"  // Replace with the actual image path
+                            alt="Healthcare Delivery"
+                            width={30}
+                            height={0}
+                            className="mx-2"
+                        />
+
+                        Medideliver</Link>
                 </h3>
                 <Link href={xShareURL} target="_blank" rel="noopener noreferrer" className="bg-blue-600 flex items-center text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
                     Share on X

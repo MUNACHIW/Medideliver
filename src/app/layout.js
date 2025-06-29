@@ -14,14 +14,14 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Medideliver",
   description: "Courier Service & Delivery, And Healthcare Services.",
+  name: "format-detection",
+  content: "telephone=no, date=no, email=no, address=no",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

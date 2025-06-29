@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <section className="min-h-screen flex flex-col items-center bg-gray-50">
       {/* Header */}
-      <header className="w-full p-6 bg-white shadow-md text-center">
+      <header className="w-full p-6 bg-white shadow-md text-center fixed top-0 z-100">
         <h1 className="text-4xl font-extrabold text-blue-600">MediDeliver</h1>
         <p className="text-gray-600 mt-2 text-lg">Connecting You to Healthcare Providers & Couriers</p>
       </header>
