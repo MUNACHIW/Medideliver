@@ -34,33 +34,52 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="mt-6 flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0 justify-center">
-            <Link href="/createaccount" className="bg-white text-blue-600 px-6 py-3 rounded-lg text-lg font-semibold shadow-md hover:bg-gray-200 transition">
-              Create An Account
+          <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+            <Link
+              href="/createaccount"
+              className="bg-white text-blue-600 px-6 py-3 rounded-full text-base font-medium shadow hover:bg-gray-100 hover:shadow-md transition-all duration-200"
+            >
+              Create an Account
             </Link>
-            <Link href="/becomeacaregiver" className="bg-gray-800 text-white px-6 py-3 rounded-lg text-lg font-semibold shadow-md hover:bg-gray-700 transition">
-              Become A Caregiver
+            <Link
+              href="/becomeacaregiver"
+              className="bg-gray-900 text-white px-6 py-3 rounded-full text-base font-medium shadow hover:bg-gray-800 hover:shadow-md transition-all duration-200"
+            >
+              Become a Caregiver
             </Link>
-            <Link href="/becomeacourier" className="bg-yellow-500 text-white px-6 py-3 rounded-lg text-lg font-semibold shadow-md hover:bg-yellow-600 transition">
-              Become A Courier
+            <Link
+              href="/becomeacourier"
+              className="bg-yellow-500 text-white px-6 py-3 rounded-full text-base font-medium shadow hover:bg-yellow-600 hover:shadow-md transition-all duration-200"
+            >
+              Become a Courier
             </Link>
           </div>
+
         </div>
       </main>
 
       {/* Search Section */}
-      <div className="w-[90%] mt-8 p-6 bg-white shadow-lg rounded-lg">
-        <h3 className="text-xl font-bold text-gray-800">Find A Medical Courier Or Caregiver</h3>
-        <div className="flex mt-4">
-          <input
-            className="flex-1 p-3 border rounded-l-lg outline-none text-gray-700"
-            placeholder="🔍 Enter your zip code or location"
-          />
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-r-lg font-bold hover:bg-blue-700">
+      <div className="w-[90%] mt-10 p-6 bg-white/70 backdrop-blur-md shadow-xl rounded-2xl">
+        <h3 className=" text-center text-2xl  text-blue-500 tracking-wide ">
+          Find a Medical Courier or Caregiver
+        </h3>
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+          <div className="relative w-[90%]">
+            <input
+              type="text"
+              placeholder="Enter your zip code or location"
+              className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-200"
+            />
+            <span className="absolute left-3 top-2.5 text-gray-500">
+              🔍
+            </span>
+          </div>
+          <button className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-2 rounded-full font-medium shadow-md hover:from-blue-600 hover:to-indigo-600 active:scale-95 transition-all duration-200">
             Search
           </button>
         </div>
       </div>
+
 
       {/* Why MediDeliver Section */}
       <div className="w-[90%] mt-10 bg-white shadow-md p-6 rounded-lg">
