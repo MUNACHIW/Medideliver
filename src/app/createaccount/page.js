@@ -31,7 +31,8 @@ export default function Createaccount() {
                     />
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
+                        className="w-full bg-gradient-to-r
+                        from-blue-500 to-indigo-500 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
                     >
                         Create Account
                     </button>

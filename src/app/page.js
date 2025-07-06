@@ -1,18 +1,38 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { useEffect } from "react";
 
 export default function Home() {
+
+  useEffect(() => {
+    const nav = document.getElementById("nav");
+
+    const handleScroll = () => {
+      if (!nav) return;
+      if (window.scrollY > 100) {
+        nav.classList.add("open");
+      } else {
+        nav.classList.remove("open");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [])
+
   return (
-    <section className="min-h-screen flex flex-col items-center bg-gray-50">
+    <section className="min-h-screen flex flex-col items-center bg-gray-50  ">
       {/* Header */}
-      <header className="w-full p-6 bg-white shadow-md text-center fixed top-0 z-100">
-        <h1 className="text-4xl font-extrabold text-blue-600">MediDeliver</h1>
+      <header id="nav" className="w-full p-6  nav-feature    bg-white shadow-md text-center fixed top-0 z-100 ">
+        <h1 className="text-4xl font-extrabold  text-blue-600">MediDeliver</h1>
         <p className="text-gray-600 mt-2 text-lg">Connecting You to Healthcare Providers & Couriers</p>
       </header>
 
       {/* Hero Section with Background Image */}
-      <main className="relative w-full h-[80vh] flex items-center justify-center text-center bg-gradient-to-r from-blue-500 to-blue-700 text-white">
+      <main className="relative w-full h-[80vh] flex items-center justify-center text-center bg-gradient-to-r from-blue-500 to-blue-700 text-white   rounded-[50px]">
         {/* Background Image Overlay */}
         <div className="absolute inset-0">
           <Image
@@ -59,8 +79,8 @@ export default function Home() {
       </main>
 
       {/* Search Section */}
-      <div className="w-[90%] mt-10 p-6 bg-white/70 backdrop-blur-md shadow-xl rounded-2xl">
-        <h3 className=" text-center text-2xl  text-blue-500 tracking-wide ">
+      <div className="w-[90%] mt-10 p-6 bg-white/70 backdrop-blur-md shadow-xl rounded-2xl  ">
+        <h3 className=" text-center text-2xl  text-blue-500 tracking-wide font-bold ">
           Find a Medical Courier or Caregiver
         </h3>
         <div className="flex flex-wrap items-center justify-center gap-3 mt-6">

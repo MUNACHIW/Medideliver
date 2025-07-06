@@ -58,7 +58,8 @@ export default function Page() {
 
                         Medideliver</Link>
                 </h3>
-                <Link href={xShareURL} target="_blank" rel="noopener noreferrer" className="bg-blue-600 flex items-center text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
+                <Link href={xShareURL} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r
+                        from-blue-500 to-indigo-500 flex items-center text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
                     Share on X
                     <ShareIcon className="h-6 w-6 text-white ml-2" />
                 </Link>
@@ -83,7 +84,8 @@ export default function Page() {
                     </p>
 
                     {/* File Upload Button */}
-                    <label className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition cursor-pointer">
+                    <label className="bg-gradient-to-r
+                        from-blue-500 to-indigo-500 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition cursor-pointer">
                         Upload License
                         <input
                             type="file"
@@ -146,7 +148,9 @@ export default function Page() {
                 <div className="mt-6 flex justify-end">
                     <Link
                         href="/submit"
-                        className="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition"
+                        className="
+                        bg-gradient-to-r
+                        from-blue-500 to-indigo-500 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition"
                     >
                         Submit Application
                     </Link>

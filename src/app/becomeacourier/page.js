@@ -22,7 +22,8 @@ export default function Becomeacourier() {
 
                         Medideliver</Link>
                 </h3>
-                <Link href={xShareURL} target="_blank" rel="noopener noreferrer" className="bg-blue-600 flex items-center text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
+                <Link href={xShareURL} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r
+                        from-blue-500 to-indigo-500 flex items-center text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
                     Share on X
                     <ShareIcon className="h-6 w-6 text-white ml-2" />
                 </Link>
@@ -41,7 +42,8 @@ export default function Becomeacourier() {
                     </li>
                 </ol>
                 <div className="flex justify-end w-full">
-                    <Link href="/courier_application" className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
+                    <Link href="/courier_application" className="bg-gradient-to-r
+                        from-blue-500 to-indigo-500 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
                         Apply
                     </Link>
                 </div>
