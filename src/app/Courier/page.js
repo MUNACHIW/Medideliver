@@ -14,9 +14,7 @@ import {
     UserIcon,
     ExclamationTriangleIcon
 } from "@heroicons/react/24/solid";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 
 // Mock data for couriers
@@ -265,6 +263,8 @@ function createCourierIcon(imageUrl) {
     });
 }
 
+const CourierMap = dynamic(() => import("./CourierMap"), { ssr: false });
+
 export default function Courier() {
     const [filteredCouriers, setFilteredCouriers] = useState(couriers);
     const [filters, setFilters] = useState({
@@ -410,42 +410,7 @@ export default function Courier() {
                 <div className="mb-8">
                     <h2 className="text-lg font-semibold mb-2 text-gray-700">Courier Locations</h2>
                     <div className="rounded-2xl overflow-hidden shadow-lg" style={{ height: "350px" }}>
-                        <MapContainer
-                            center={[40.7128, -74.0060]} // Center on NYC
-                            zoom={11}
-                            style={{ height: "100%", width: "100%" }}
-                        >
-                            <TileLayer
-                                attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            />
-                            {filteredCouriers.map(courier => (
-                                <Marker
-                                    key={courier.id}
-                                    position={[courier.lat, courier.lng]}
-                                    icon={createCourierIcon(courier.image)}
-                                >
-                                    <Popup>
-                                        <div className="flex flex-col items-center">
-                                            <img
-                                                src={courier.image}
-                                                alt={courier.name}
-                                                width={60}
-                                                height={60}
-                                                style={{
-                                                    borderRadius: "50%",
-                                                    marginBottom: 8,
-                                                    objectFit: "cover"
-                                                }}
-                                            />
-                                            <strong>{courier.name}</strong><br />
-                                            {courier.location}<br />
-                                            {courier.availability}
-                                        </div>
-                                    </Popup>
-                                </Marker>
-                            ))}
-                        </MapContainer>
+                        <CourierMap couriers={filteredCouriers} />
                     </div>
                 </div>
                 {/* Couriers Grid */}
