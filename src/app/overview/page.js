@@ -236,7 +236,7 @@ export default function Overview() {
             text: "Fast, secure delivery of medical supplies and laboratory samples",
             image: "/courier.png",
             button: "Book Delivery",
-            href: "/courier",
+            href: "/Courier",
         },
         {
             tag: "💼 Careers",
