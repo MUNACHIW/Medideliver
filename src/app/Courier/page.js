@@ -15,9 +15,9 @@ import {
     ExclamationTriangleIcon
 } from "@heroicons/react/24/solid";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Image from "next/image";
-import L from "leaflet";
 
 // Mock data for couriers
 const couriers = [
@@ -262,7 +262,6 @@ function createCourierIcon(imageUrl) {
         iconAnchor: [24, 48],
         popupAnchor: [0, -48],
         className: "courier-marker-icon",
-        // Optionally, you can add a border or background using CSS for .courier-marker-icon
     });
 }
 
