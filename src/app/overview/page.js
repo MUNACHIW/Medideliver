@@ -126,7 +126,7 @@ function Carousel({ title, profiles, autoPlay = true, interval = 5000 }) {
     );
 }
 
-// Enhanced Service Card Component
+// Enhanced Service Card Component with fixed tag visibility
 function ServiceCard({ tag, color, title, text, image, button, href = "#" }) {
     const badgeColors = {
         blue: "bg-blue-100 text-blue-700 ring-1 ring-blue-200",
@@ -138,11 +138,13 @@ function ServiceCard({ tag, color, title, text, image, button, href = "#" }) {
         <div className="relative group bg-white rounded-2xl shadow-lg p-6 max-w-sm w-full transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${badgeColors[color]} backdrop-blur-sm`}>
+            {/* Fixed tag positioning with higher z-index */}
+            <div className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-xs font-semibold ${badgeColors[color]} backdrop-blur-sm shadow-md`}>
                 {tag}
             </div>
 
-            <div className="relative overflow-hidden rounded-xl mb-4">
+            {/* Image container with controlled z-index */}
+            <div className="relative overflow-hidden rounded-xl mb-4 z-10">
                 <Image
                     src={image}
                     width={400}
@@ -150,7 +152,8 @@ function ServiceCard({ tag, color, title, text, image, button, href = "#" }) {
                     alt={title}
                     className="object-cover w-full h-52 transform group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {/* Image overlay with lower z-index than the tag */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-5"></div>
             </div>
 
             <div className="relative z-10">
