@@ -1,8 +1,7 @@
 "use client";
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import {
-    MagnifyingGlassIcon,
     MapPinIcon,
     ClockIcon,
     StarIcon,
@@ -10,15 +9,15 @@ import {
     ChatBubbleOvalLeftIcon,
     PhoneIcon,
     ShieldCheckIcon,
+    ArrowLeftIcon,
+    UserIcon,
     XMarkIcon,
     CheckCircleIcon,
-    ExclamationTriangleIcon,
-    UserIcon,
-    FunnelIcon
+    TrashIcon
 } from '@heroicons/react/24/solid';
 import { useFavorites } from '../hooks/useFavorites'; // Import the custom hook
 
-// Mock data with foreign names and USD currency
+// Same provider data (ideally move this to a separate data file)
 const providers = [
     {
         id: 1,
@@ -124,9 +123,6 @@ const providers = [
     }
 ];
 
-const specialties = ["All Specialties", "General Practice", "Pediatric Nursing", "Home Health Care", "Mental Health", "Cardiology", "Dermatology"];
-const serviceTypes = ["All Services", "Home Visit", "Clinic Visit", "Telemedicine", "Emergency Care"];
-
 function ProviderCard({ provider, onBook, onFavorite, isFavorite }) {
     return (
         <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-1">
@@ -151,12 +147,12 @@ function ProviderCard({ provider, onBook, onFavorite, isFavorite }) {
 
                 <button
                     onClick={() => onFavorite(provider.id)}
-                    className="absolute top-4 left-4 p-2 bg-white/80 rounded-full shadow-lg hover:bg-white transition-all transform hover:scale-110"
+                    className="absolute top-4 left-4 p-2 bg-white/80 rounded-full shadow-lg hover:bg-white transition-all group transform hover:scale-110"
                 >
                     <HeartIcon
                         className={`h-5 w-5 transition-colors ${isFavorite
-                                ? 'text-red-500 animate-pulse'
-                                : 'text-gray-400 hover:text-red-400'
+                            ? 'text-red-500 animate-pulse'
+                            : 'text-gray-400 hover:text-red-400'
                             }`}
                     />
                 </button>
@@ -305,8 +301,8 @@ function BookingModal({ provider, isOpen, onClose, onConfirm }) {
                                     type="button"
                                     onClick={() => updateFormData('time', time)}
                                     className={`p-3 rounded-xl border transition-all ${formData.time === time
-                                            ? 'bg-blue-500 text-white border-blue-500'
-                                            : 'bg-gray-50 hover:bg-blue-50'
+                                        ? 'bg-blue-500 text-white border-blue-500'
+                                        : 'bg-gray-50 hover:bg-blue-50'
                                         }`}
                                 >
                                     {time}
@@ -349,77 +345,13 @@ function BookingModal({ provider, isOpen, onClose, onConfirm }) {
     );
 }
 
-export default function Healthcare() {
-    const [filteredProviders, setFilteredProviders] = useState(providers);
-    const [filters, setFilters] = useState({
-        search: '',
-        specialty: 'All Specialties',
-        service: 'All Services',
-        sortBy: 'rating'
-    });
+export default function FavoritesPage() {
     const [selectedProvider, setSelectedProvider] = useState(null);
     const [showBookingModal, setShowBookingModal] = useState(false);
     const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
     // Use the custom favorites hook
-    const { toggleFavorite, isFavorite, favoriteCount, isLoaded } = useFavorites();
-
-    const applyFilters = useCallback(() => {
-        let filtered = providers;
-
-        // Search filter
-        if (filters.search) {
-            filtered = filtered.filter(provider =>
-                provider.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-                provider.specialty.toLowerCase().includes(filters.search.toLowerCase()) ||
-                provider.services.some(service => service.toLowerCase().includes(filters.search.toLowerCase()))
-            );
-        }
-
-        // Specialty filter
-        if (filters.specialty !== 'All Specialties') {
-            filtered = filtered.filter(provider => provider.specialty === filters.specialty);
-        }
-
-        // Service filter
-        if (filters.service !== 'All Services') {
-            if (filters.service === 'Emergency Care') {
-                filtered = filtered.filter(provider => provider.isEmergency);
-            } else {
-                filtered = filtered.filter(provider =>
-                    provider.services.some(service =>
-                        service.toLowerCase().includes(filters.service.toLowerCase())
-                    )
-                );
-            }
-        }
-
-        // Sort
-        filtered.sort((a, b) => {
-            switch (filters.sortBy) {
-                case 'rating':
-                    return b.rating - a.rating;
-                case 'price':
-                    return a.price - b.price;
-                case 'distance':
-                    return parseFloat(a.distance) - parseFloat(b.distance);
-                case 'availability':
-                    return a.availability.includes('today') ? -1 : 1;
-                default:
-                    return 0;
-            }
-        });
-
-        setFilteredProviders(filtered);
-    }, [filters]);
-
-    useEffect(() => {
-        applyFilters();
-    }, [applyFilters]);
-
-    const updateFilter = (key, value) => {
-        setFilters(prev => ({ ...prev, [key]: value }));
-    };
+    const { toggleFavorite, isFavorite, favoriteCount, clearAllFavorites, isLoaded } = useFavorites();
 
     const handleBook = (provider) => {
         setSelectedProvider(provider);
@@ -431,135 +363,83 @@ export default function Healthcare() {
         setTimeout(() => setBookingConfirmed(false), 3000);
     };
 
+    const favoriteProviders = providers.filter(provider => isFavorite(provider.id));
+
     // Don't render until favorites are loaded to prevent flash
     if (!isLoaded) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-50 flex items-center justify-center">
                 <div className="text-center">
-                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Loading...</p>
+                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-red-500 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Loading favorites...</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-50">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 {/* Header */}
+                <div className="flex items-center justify-between mb-8">
+                    <Link href="/healthcare">
+                        <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors">
+                            <ArrowLeftIcon className="h-5 w-5" />
+                            <span>Back to All Providers</span>
+                        </button>
+                    </Link>
+
+                    {favoriteProviders.length > 0 && (
+                        <button
+                            onClick={clearAllFavorites}
+                            className="flex items-center space-x-2 bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2 rounded-xl transition-colors"
+                        >
+                            <TrashIcon className="h-4 w-4" />
+                            <span>Clear All</span>
+                        </button>
+                    )}
+                </div>
+
                 <div className="text-center mb-12">
-                    <div className="flex justify-between items-center mb-8">
-                        <div></div>
-                        <Link href="/favorites">
-                            <button className="flex items-center space-x-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
-                                <HeartIcon className="h-5 w-5" />
-                                <span>Favorites ({favoriteCount})</span>
-                            </button>
-                        </Link>
-                    </div>
                     <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                        Find Your Perfect <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Healthcare Provider</span>
+                        Your <span className="bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">Favorite</span> Providers
                     </h1>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        Connect with verified healthcare professionals in your area. Quality care is just a click away.
+                        Your saved healthcare professionals for quick access and easy booking.
                     </p>
                 </div>
 
-                {/* Emergency Banner */}
-                <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white p-4 rounded-xl mb-8 shadow-lg">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                            <ExclamationTriangleIcon className="h-6 w-6 animate-pulse" />
-                            <div>
-                                <h3 className="font-bold">Emergency Care Available</h3>
-                                <p className="text-sm opacity-90">24/7 emergency healthcare services</p>
-                            </div>
-                        </div>
-                        <button className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full hover:bg-white/30 transition-all font-semibold">
-                            Call Now
-                        </button>
-                    </div>
-                </div>
-
-                {/* Search and Filters */}
-                <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                        <div className="lg:col-span-2 relative">
-                            <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                            <input
-                                type="text"
-                                placeholder="Search providers..."
-                                value={filters.search}
-                                onChange={(e) => updateFilter('search', e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            />
-                        </div>
-
-                        <select
-                            value={filters.specialty}
-                            onChange={(e) => updateFilter('specialty', e.target.value)}
-                            className="px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        >
-                            {specialties.map(specialty => (
-                                <option key={specialty} value={specialty}>{specialty}</option>
-                            ))}
-                        </select>
-
-                        <select
-                            value={filters.service}
-                            onChange={(e) => updateFilter('service', e.target.value)}
-                            className="px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        >
-                            {serviceTypes.map(service => (
-                                <option key={service} value={service}>{service}</option>
-                            ))}
-                        </select>
-
-                        <select
-                            value={filters.sortBy}
-                            onChange={(e) => updateFilter('sortBy', e.target.value)}
-                            className="px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        >
-                            <option value="rating">Sort by Rating</option>
-                            <option value="price">Sort by Price</option>
-                            <option value="distance">Sort by Distance</option>
-                            <option value="availability">Sort by Availability</option>
-                        </select>
-                    </div>
-                </div>
-
-                {/* Results */}
+                {/* Favorites Count */}
                 <div className="mb-6">
                     <p className="text-gray-600">
-                        Showing <span className="font-semibold">{filteredProviders.length}</span> healthcare providers
+                        You have <span className="font-semibold text-red-600">{favoriteProviders.length}</span> favorite provider{favoriteProviders.length !== 1 ? 's' : ''}
                     </p>
                 </div>
 
-                {/* Providers Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredProviders.map((provider) => (
-                        <ProviderCard
-                            key={provider.id}
-                            provider={provider}
-                            onBook={handleBook}
-                            onFavorite={toggleFavorite}
-                            isFavorite={isFavorite(provider.id)}
-                        />
-                    ))}
-                </div>
-
-                {/* Empty State */}
-                {filteredProviders.length === 0 && (
+                {/* Favorites Grid */}
+                {favoriteProviders.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {favoriteProviders.map((provider) => (
+                            <ProviderCard
+                                key={provider.id}
+                                provider={provider}
+                                onBook={handleBook}
+                                onFavorite={toggleFavorite}
+                                isFavorite={isFavorite(provider.id)}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    /* Empty Favorites State */
                     <div className="text-center py-16">
-                        <UserIcon className="h-24 w-24 mx-auto mb-4 text-gray-400" />
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">No providers found</h3>
-                        <p className="text-gray-600 mb-4">Try adjusting your search criteria</p>
-                        <button
-                            onClick={() => setFilters({ search: '', specialty: 'All Specialties', service: 'All Services', sortBy: 'rating' })}
-                            className="bg-blue-500 text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition-colors"
-                        >
-                            Clear Filters
-                        </button>
+                        <HeartIcon className="h-24 w-24 mx-auto mb-4 text-gray-400" />
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">No favorites yet</h3>
+                        <p className="text-gray-600 mb-4">Start adding providers to your favorites by clicking the heart icon</p>
+                        <Link href="/heathcare">
+                            <button className="bg-gradient-to-r from-red-500 to-pink-600 text-white px-6 py-3 rounded-xl hover:from-red-600 hover:to-pink-700 transition-all font-semibold shadow-lg hover:shadow-xl">
+                                Browse Providers
+                            </button>
+                        </Link>
                     </div>
                 )}
 
