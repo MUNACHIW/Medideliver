@@ -14,7 +14,7 @@ import {
     CheckCircleIcon,
     ExclamationTriangleIcon,
     UserIcon,
-    FunnelIcon
+    ArrowLeftIcon,
 } from '@heroicons/react/24/solid';
 import { useFavorites } from '../hooks/useFavorites'; // Import the custom hook
 
@@ -155,8 +155,8 @@ function ProviderCard({ provider, onBook, onFavorite, isFavorite }) {
                 >
                     <HeartIcon
                         className={`h-5 w-5 transition-colors ${isFavorite
-                                ? 'text-red-500 animate-pulse'
-                                : 'text-gray-400 hover:text-red-400'
+                            ? 'text-red-500 animate-pulse'
+                            : 'text-gray-400 hover:text-red-400'
                             }`}
                     />
                 </button>
@@ -305,8 +305,8 @@ function BookingModal({ provider, isOpen, onClose, onConfirm }) {
                                     type="button"
                                     onClick={() => updateFormData('time', time)}
                                     className={`p-3 rounded-xl border transition-all ${formData.time === time
-                                            ? 'bg-blue-500 text-white border-blue-500'
-                                            : 'bg-gray-50 hover:bg-blue-50'
+                                        ? 'bg-blue-500 text-white border-blue-500'
+                                        : 'bg-gray-50 hover:bg-blue-50'
                                         }`}
                                 >
                                     {time}
@@ -449,7 +449,15 @@ export default function Healthcare() {
                 {/* Header */}
                 <div className="text-center mb-12">
                     <div className="flex justify-between items-center mb-8">
-                        <div></div>
+                        <div>
+
+                            <Link href="/overview">
+                                <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors">
+                                    <ArrowLeftIcon className="h-5 w-5" />
+                                    <span>back to overview</span>
+                                </button>
+                            </Link>
+                        </div>
                         <Link href="/favorites">
                             <button className="flex items-center space-x-2 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-xl transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
                                 <HeartIcon className="h-5 w-5" />

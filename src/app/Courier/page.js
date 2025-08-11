@@ -12,10 +12,12 @@ import {
     CheckCircleIcon,
     TruckIcon,
     UserIcon,
-    ExclamationTriangleIcon
+    ExclamationTriangleIcon,
+    ArrowLeftIcon,
 } from "@heroicons/react/24/solid";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
 
 // Mock data for couriers
 const couriers = [
@@ -332,15 +334,27 @@ export default function Courier() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+
             <div className="max-w-7xl mx-auto px-4 py-8">
                 {/* Header */}
-                <div className="text-center mb-12">
+                {/* <div className="text-center mb-12">
                     <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                         Find a <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Medicine Courier</span>
                     </h1>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                         Fast, safe, and reliable medicine delivery to your door.
                     </p>
+                </div> */}
+                <div className="flex justify-between items-center mb-8">
+                    <div>
+
+                        <Link href="/overview">
+                            <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors">
+                                <ArrowLeftIcon className="h-5 w-5" />
+                                <span>back to overview</span>
+                            </button>
+                        </Link>
+                    </div>
                 </div>
                 {/* Express Banner */}
                 <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-4 rounded-xl mb-8 shadow-lg">
