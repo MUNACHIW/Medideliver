@@ -382,10 +382,10 @@ export default function FavoritesPage() {
             <div className="max-w-7xl mx-auto px-4 py-8">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
-                    <Link href="/healthcare">
+                    <Link href="/overview">
                         <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors">
                             <ArrowLeftIcon className="h-5 w-5" />
-                            <span>Back to All Providers</span>
+                            <span>back to overview</span>
                         </button>
                     </Link>
 
@@ -435,7 +435,7 @@ export default function FavoritesPage() {
                         <HeartIcon className="h-24 w-24 mx-auto mb-4 text-gray-400" />
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">No favorites yet</h3>
                         <p className="text-gray-600 mb-4">Start adding providers to your favorites by clicking the heart icon</p>
-                        <Link href="/heathcare">
+                        <Link href="/healthcare">
                             <button className="bg-gradient-to-r from-red-500 to-pink-600 text-white px-6 py-3 rounded-xl hover:from-red-600 hover:to-pink-700 transition-all font-semibold shadow-lg hover:shadow-xl">
                                 Browse Providers
                             </button>

@@ -8,11 +8,12 @@ import {
     DocumentPlusIcon,
     HeartIcon,
     UserCircleIcon,
-    ChevronLeftIcon,
-    ChevronRightIcon,
+    // ChevronLeftIcon,
+    // ChevronRightIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { useFavorites } from '../hooks/useFavorites';
 function ServiceCard({ tag, color, title, text, image, button, href = "#" }) {
     const badgeColors = {
         blue: "bg-blue-100 text-blue-700 ring-1 ring-blue-200",
@@ -83,6 +84,7 @@ export default function Career() {
             button: "Become A Courier",
             href: "/becomeacourier",
         },]
+    const { favoriteCount } = useFavorites();
     return (
         <main className="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
             <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-200">
@@ -118,9 +120,14 @@ export default function Career() {
                             <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
                                 <DocumentPlusIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
                             </button>
-                            <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
+                            <Link href="/favorites" className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
                                 <HeartIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-                            </button>
+                                {favoriteCount ? (
+                                    <span className="absolute top-4 left-196 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
+                                        {favoriteCount}
+                                    </span>
+                                ) : null}
+                            </Link>
                         </div>
 
                         {/* User Profile & Upgrade */}

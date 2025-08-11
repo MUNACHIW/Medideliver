@@ -8,123 +8,124 @@ import {
     DocumentPlusIcon,
     HeartIcon,
     UserCircleIcon,
-    ChevronLeftIcon,
-    ChevronRightIcon,
+    // ChevronLeftIcon,
+    // ChevronRightIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { useFavorites } from '../hooks/useFavorites';
 
 // Enhanced Carousel with better accessibility and performance
-function Carousel({ title, profiles, autoPlay = true, interval = 5000 }) {
-    const [current, setCurrent] = useState(0);
-    const [isPlaying, setIsPlaying] = useState(autoPlay);
+// function Carousel({ title, profiles, autoPlay = true, interval = 5000 }) {
+//     const [current, setCurrent] = useState(0);
+//     const [isPlaying, setIsPlaying] = useState(autoPlay);
 
-    const prev = useCallback(() => {
-        setCurrent((prev) => (prev - 1 + profiles.length) % profiles.length);
-    }, [profiles.length]);
+//     const prev = useCallback(() => {
+//         setCurrent((prev) => (prev - 1 + profiles.length) % profiles.length);
+//     }, [profiles.length]);
 
-    const next = useCallback(() => {
-        setCurrent((prev) => (prev + 1) % profiles.length);
-    }, [profiles.length]);
+//     const next = useCallback(() => {
+//         setCurrent((prev) => (prev + 1) % profiles.length);
+//     }, [profiles.length]);
 
-    const goToSlide = useCallback((index) => {
-        setCurrent(index);
-    }, []);
+//     const goToSlide = useCallback((index) => {
+//         setCurrent(index);
+//     }, []);
 
-    // Auto-play functionality
-    useEffect(() => {
-        if (!isPlaying) return;
-        const timer = setInterval(next, interval);
-        return () => clearInterval(timer);
-    }, [isPlaying, next, interval]);
+//     // Auto-play functionality
+//     useEffect(() => {
+//         if (!isPlaying) return;
+//         const timer = setInterval(next, interval);
+//         return () => clearInterval(timer);
+//     }, [isPlaying, next, interval]);
 
-    // Pause on hover
-    const handleMouseEnter = () => setIsPlaying(false);
-    const handleMouseLeave = () => setIsPlaying(autoPlay);
+//     // Pause on hover
+//     const handleMouseEnter = () => setIsPlaying(false);
+//     const handleMouseLeave = () => setIsPlaying(autoPlay);
 
-    return (
-        <section className="my-16 px-4" aria-label={title}>
-            <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">{title}</h2>
-            <div
-                className="relative max-w-4xl mx-auto"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 shadow-lg">
-                    <div
-                        className="flex transition-transform duration-700 ease-in-out"
-                        style={{ transform: `translateX(-${current * 100}%)` }}
-                        role="group"
-                        aria-label="Profile carousel"
-                    >
-                        {profiles.map((person, idx) => (
-                            <div
-                                key={idx}
-                                className="min-w-full p-8 flex flex-col items-center text-center"
-                                aria-hidden={idx !== current}
-                            >
-                                <div className="relative mb-6 group">
-                                    <Image
-                                        src={person.image}
-                                        alt={`${person.name}, ${person.role}`}
-                                        width={140}
-                                        height={140}
-                                        className="rounded-full object-cover h-32 w-32 ring-4 ring-white shadow-lg transform group-hover:scale-105 transition-transform duration-300"
-                                        priority={idx === 0}
-                                    />
-                                    <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                </div>
-                                <h3 className="text-xl font-semibold text-gray-800 mb-2">{person.name}</h3>
-                                <p className="text-sm text-gray-600 font-medium px-4 py-2 bg-white/50 rounded-full">{person.role}</p>
-                                {person.rating && (
-                                    <div className="flex items-center mt-3 text-yellow-500">
-                                        {[...Array(5)].map((_, i) => (
-                                            <span key={i} className={i < person.rating ? "text-yellow-400" : "text-gray-300"}>
-                                                ⭐
-                                            </span>
-                                        ))}
-                                        <span className="ml-2 text-sm text-gray-600">({person.rating}/5)</span>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+//     return (
+//         <section className="my-16 px-4" aria-label={title}>
+//             <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">{title}</h2>
+//             <div
+//                 className="relative max-w-4xl mx-auto"
+//                 onMouseEnter={handleMouseEnter}
+//                 onMouseLeave={handleMouseLeave}
+//             >
+//                 <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 shadow-lg">
+//                     <div
+//                         className="flex transition-transform duration-700 ease-in-out"
+//                         style={{ transform: `translateX(-${current * 100}%)` }}
+//                         role="group"
+//                         aria-label="Profile carousel"
+//                     >
+//                         {profiles.map((person, idx) => (
+//                             <div
+//                                 key={idx}
+//                                 className="min-w-full p-8 flex flex-col items-center text-center"
+//                                 aria-hidden={idx !== current}
+//                             >
+//                                 <div className="relative mb-6 group">
+//                                     <Image
+//                                         src={person.image}
+//                                         alt={`${person.name}, ${person.role}`}
+//                                         width={140}
+//                                         height={140}
+//                                         className="rounded-full object-cover h-32 w-32 ring-4 ring-white shadow-lg transform group-hover:scale-105 transition-transform duration-300"
+//                                         priority={idx === 0}
+//                                     />
+//                                     <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+//                                 </div>
+//                                 <h3 className="text-xl font-semibold text-gray-800 mb-2">{person.name}</h3>
+//                                 <p className="text-sm text-gray-600 font-medium px-4 py-2 bg-white/50 rounded-full">{person.role}</p>
+//                                 {person.rating && (
+//                                     <div className="flex items-center mt-3 text-yellow-500">
+//                                         {[...Array(5)].map((_, i) => (
+//                                             <span key={i} className={i < person.rating ? "text-yellow-400" : "text-gray-300"}>
+//                                                 ⭐
+//                                             </span>
+//                                         ))}
+//                                         <span className="ml-2 text-sm text-gray-600">({person.rating}/5)</span>
+//                                     </div>
+//                                 )}
+//                             </div>
+//                         ))}
+//                     </div>
+//                 </div>
 
-                {/* Navigation buttons */}
-                <button
-                    onClick={prev}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    aria-label="Previous profile"
-                >
-                    <ChevronLeftIcon className="h-5 w-5 text-gray-700" />
-                </button>
-                <button
-                    onClick={next}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    aria-label="Next profile"
-                >
-                    <ChevronRightIcon className="h-5 w-5 text-gray-700" />
-                </button>
+//                 {/* Navigation buttons */}
+//                 <button
+//                     onClick={prev}
+//                     className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                     aria-label="Previous profile"
+//                 >
+//                     <ChevronLeftIcon className="h-5 w-5 text-gray-700" />
+//                 </button>
+//                 <button
+//                     onClick={next}
+//                     className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                     aria-label="Next profile"
+//                 >
+//                     <ChevronRightIcon className="h-5 w-5 text-gray-700" />
+//                 </button>
 
-                {/* Dots indicator */}
-                <div className="flex justify-center mt-6 space-x-2">
-                    {profiles.map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => goToSlide(idx)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${idx === current
-                                ? "bg-blue-500 scale-125"
-                                : "bg-gray-300 hover:bg-gray-400"
-                                }`}
-                            aria-label={`Go to slide ${idx + 1}`}
-                        />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
+//                 {/* Dots indicator */}
+//                 <div className="flex justify-center mt-6 space-x-2">
+//                     {profiles.map((_, idx) => (
+//                         <button
+//                             key={idx}
+//                             onClick={() => goToSlide(idx)}
+//                             className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${idx === current
+//                                 ? "bg-blue-500 scale-125"
+//                                 : "bg-gray-300 hover:bg-gray-400"
+//                                 }`}
+//                             aria-label={`Go to slide ${idx + 1}`}
+//                         />
+//                     ))}
+//                 </div>
+//             </div>
+//         </section>
+//     );
+// }
 
 // Enhanced Service Card Component with fixed tag visibility
 function ServiceCard({ tag, color, title, text, image, button, href = "#" }) {
@@ -248,9 +249,10 @@ export default function Overview() {
             text: "Build your career in healthcare with competitive benefits and growth opportunities",
             image: "/job.png",
             button: "Apply Now",
-            href: "/careers",
+            href: "/Jobs",
         },
     ];
+    const { favoriteCount } = useFavorites();
 
     return (
         <main className="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
@@ -288,9 +290,15 @@ export default function Overview() {
                             <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
                                 <DocumentPlusIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
                             </button>
-                            <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
+                            <Link href="/favorites" className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
                                 <HeartIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-                            </button>
+                                {favoriteCount ? (
+                                    <span className="absolute top-4 left-196 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
+                                        {favoriteCount}
+                                    </span>
+                                ) : null}
+                            </Link>
+
                         </div>
 
                         {/* User Profile & Upgrade */}
@@ -355,13 +363,13 @@ export default function Overview() {
             </header>
 
             {/* Hero Section */}
-            <section className="text-center py-16 px-4">
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+            <section className="text-center py-6 px-4">
+                {/* <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                     Welcome to <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Healthcare Excellence</span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                     Choose from our comprehensive healthcare services designed to meet your every need
-                </p>
+                </p> */}
                 <div className="flex justify-center">
                     <div className="animate-bounce">
                         <span className="text-4xl">👇</span>
@@ -382,8 +390,8 @@ export default function Overview() {
             </section>
 
             {/* Carousels */}
-            <Carousel title="🌟 Top Healthcare Professionals" profiles={caregivers} />
-            <Carousel title="🚚 Trusted Medical Couriers" profiles={couriers} />
+            {/* <Carousel title="🌟 Top Healthcare Professionals" profiles={caregivers} />
+            <Carousel title="🚚 Trusted Medical Couriers" profiles={couriers} /> */}
 
             {/* Enhanced Footer */}
             <footer className="bg-white/80 backdrop-blur-md border-t border-gray-200 mt-20 py-12 px-4">
@@ -403,9 +411,9 @@ export default function Overview() {
                         <div>
                             <h3 className="font-semibold text-gray-800 mb-4">Quick Links</h3>
                             <ul className="space-y-2 text-gray-600">
-                                <li><Link href="/care" className="hover:text-blue-600 transition-colors duration-300">Find Care</Link></li>
+                                <li><Link href="/healthcare" className="hover:text-blue-600 transition-colors duration-300">Find Care</Link></li>
                                 <li><Link href="/courier" className="hover:text-blue-600 transition-colors duration-300">Book Delivery</Link></li>
-                                <li><Link href="/careers" className="hover:text-blue-600 transition-colors duration-300">Careers</Link></li>
+                                <li><Link href="/Jobs" className="hover:text-blue-600 transition-colors duration-300">Careers</Link></li>
                             </ul>
                         </div>
                         <div>

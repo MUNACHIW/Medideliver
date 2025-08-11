@@ -183,8 +183,8 @@ function BookingModal({ courier, isOpen, onClose, onConfirm }) {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50 ">
+            <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-hidden">
                 <div className="p-6 border-b flex items-center justify-between">
                     <h3 className="text-xl font-bold text-gray-800">Book Courier</h3>
                     <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
