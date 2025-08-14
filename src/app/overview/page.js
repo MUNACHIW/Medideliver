@@ -344,9 +344,14 @@ export default function Overview() {
                                 <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300">
                                     <DocumentPlusIcon className="h-6 w-6 text-gray-600" />
                                 </button>
-                                <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300">
-                                    <HeartIcon className="h-6 w-6 text-gray-600" />
-                                </button>
+                                <Link href="/favorites" className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
+                                    <HeartIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
+                                    {favoriteCount ? (
+                                        <span className="absolute top-4 left-196 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
+                                            {favoriteCount}
+                                        </span>
+                                    ) : null}
+                                </Link>
                             </div>
                             <div className="flex items-center justify-center space-x-4">
                                 <UserCircleIcon className="h-10 w-10 text-gray-600" />
