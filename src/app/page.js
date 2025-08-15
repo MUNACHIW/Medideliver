@@ -57,7 +57,8 @@ function Chatbot() {
       "I'd be happy to help you with that. Could you please be more specific about what information you're looking for?",
       "I want to make sure I give you accurate information. Could you clarify what aspect of our services you're interested in?",
       "I'm here to help with questions about MediDeliver's services. What specific information can I provide for you?",
-      "Let me help you find the right information. What would you like to know about our delivery or caregiver services?"
+      "Let me help you find the right information. What would you like to know about our delivery or caregiver services?",
+      "Please ask questions related to our platforms in other for me to give you directive informations "
     ]
   };
 
