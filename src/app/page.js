@@ -211,7 +211,7 @@ function EnhancedChatbot() {
     if (intent === 'location_info') {
       const location = entities.find(e => e.type === 'location')?.value;
       setUserProfile(prev => ({ ...prev, location }));
-      return `Thanks for sharing your location (${location}). This helps me provide more relevant information about our services in your area. Let me check our coverage for you!\n\nWhat specific service are you interested in?`;
+      return `Thanks for sharing your what you need (${location}). This helps me provide more relevant information about our services in your area. Let me check our coverage for you!\n\nWhat specific service are you interested in?`;
     }
 
     // Contextual greetings
@@ -259,7 +259,7 @@ function EnhancedChatbot() {
     // Application responses
     if (intent === 'courier_application') {
       const app = knowledgeBase.applications.courier;
-      return `**Courier Opportunities** 🚗\n\n**Requirements:**\n${app.requirements.map(r => `• ${r}`).join('\n')}\n\n💰 **Earnings:** ${app.earnings}\n📅 **Schedule:** ${app.schedule}\n\n🎁 **Benefits:**\n${app.benefits.map(b => `• ${b}`).join('\n')}\n\n**Ready to apply?** Our application process takes about 15 minutes online, followed by a background check and training program.\n\nInterested in starting the application? I can direct you to our careers page!`;
+      return `**Courier Opportunities** 🚗\n\n**Requirements:**\n${app.requirements.map(r => `• ${r}`).join('\n')}\n\n💰 **Earnings:** ${app.earnings}\n📅 **Schedule:** ${app.schedule}\n\n🎁 **Benefits:**\n${app.benefits.map(b => `• ${b}`).join('\n')}\n\n**Ready to apply?** Our application process takes about 15 minutes online, followed by a background check and training program.\n\n`;
     }
 
     if (intent === 'caregiver_application') {
