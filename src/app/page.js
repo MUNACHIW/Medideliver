@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+// import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 
 // Enhanced Intelligent Chatbot Component
@@ -95,10 +95,10 @@ function EnhancedChatbot() {
 
     // Detect frustration or need for human help
     const frustrationWords = ['frustrated', 'angry', 'upset', 'terrible', 'awful', 'horrible', 'worst', 'hate', 'stupid', 'useless', 'help me', 'speak to someone', 'human', 'representative', 'manager', 'supervisor', 'person', 'agent'];
-    const needsHumanHelp = frustrationWords.some(word => text.includes(word)) || 
-                          text.includes('not helpful') || 
-                          text.includes('don\'t understand') ||
-                          context.messageCount > 8;
+    const needsHumanHelp = frustrationWords.some(word => text.includes(word)) ||
+      text.includes('not helpful') ||
+      text.includes('don\'t understand') ||
+      context.messageCount > 8;
 
     // Urgent/Emergency detection
     const emergencyWords = ['emergency', 'urgent', 'critical', 'now', 'immediately', 'asap', 'life threatening', 'dying', 'pain', 'can\'t breathe', 'chest pain'];
@@ -244,11 +244,11 @@ function EnhancedChatbot() {
     // Enhanced pricing responses
     if (intent === 'pricing_inquiry') {
       const serviceType = entities.find(e => e.type === 'service')?.value || userProfile.currentFlow;
-      
+
       if (serviceType === 'medication') {
         return `**Medication Delivery Pricing:**\n\n🚚 **Standard Delivery (4-6 hours):** $12-18\n⚡ **Express Delivery (1-2 hours):** $18-28\n🚨 **Emergency Delivery (<1 hour):** $28-45\n\n💡 **Save with Monthly Plans:**\n• Unlimited Standard: $39.99/month\n• Unlimited Express: $79.99/month\n• Family Plan (4 members): $119.99/month\n\n*Prices vary by distance and location*\n\nMost insurance plans cover the medication cost - you only pay the delivery fee!\n\nWant me to connect you with customer service for a personalized quote?`;
       }
-      
+
       if (serviceType === 'caregiver') {
         return `**Caregiver Service Rates:**\n\n👥 **Companion Care:** $22-28/hour\n🛁 **Personal Care:** $26-32/hour\n👩‍⚕️ **Skilled Nursing:** $32-42/hour\n🌙 **Overnight Care:** $140-200/night\n\n✅ **All rates include:**\n• Licensed, insured caregivers\n• Background-checked professionals\n• Flexible scheduling\n• Care plan customization\n\n💳 **Payment Options:** Most insurance plans accepted, private pay available\n\nWhat level of care are you considering? I can provide a more specific estimate!`;
       }
@@ -280,7 +280,7 @@ function EnhancedChatbot() {
     // Handle questions with FAQ lookup
     if (intent === 'question') {
       const question = message.toLowerCase();
-      const faqMatch = Object.entries(knowledgeBase.faqs).find(([key, _]) => 
+      const faqMatch = Object.entries(knowledgeBase.faqs).find(([key, _]) =>
         question.includes(key) || key.split(' ').some(word => question.includes(word))
       );
 
@@ -310,7 +310,7 @@ function EnhancedChatbot() {
   const generateContextualSuggestions = () => {
     const baseOptions = [
       "🚚 Medication delivery options and pricing",
-      "👨‍⚕️ Caregiver services and rates", 
+      "👨‍⚕️ Caregiver services and rates",
       "📦 Medical supply delivery",
       "💼 Career opportunities (courier/caregiver)",
       "📱 Account setup and getting started"
@@ -468,9 +468,8 @@ function EnhancedChatbot() {
       {/* Floating Chat Button */}
       <button
         onClick={handleChatToggle}
-        className={`fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 z-50 flex items-center justify-center ${
-          isOpen ? 'rotate-45' : ''
-        }`}
+        className={`fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 z-50 flex items-center justify-center ${isOpen ? 'rotate-45' : ''
+          }`}
         aria-label="Toggle chat"
       >
         {isOpen ? (
@@ -489,9 +488,8 @@ function EnhancedChatbot() {
 
       {/* Enhanced Chat Window */}
       <div
-        className={`fixed bottom-24 right-6 w-96 h-[550px] bg-white rounded-xl shadow-2xl border border-gray-200 transition-all duration-300 transform z-40 ${
-          isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
-        }`}
+        className={`fixed bottom-24 right-6 w-96 h-[550px] bg-white rounded-xl shadow-2xl border border-gray-200 transition-all duration-300 transform z-40 ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
+          }`}
       >
         {/* Enhanced Header */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 rounded-t-xl flex items-center justify-between">
@@ -528,11 +526,10 @@ function EnhancedChatbot() {
               className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
             >
               <div
-                className={`max-w-xs px-4 py-2 rounded-2xl text-sm ${
-                  message.isBot
-                    ? 'bg-white text-gray-800 border border-gray-200 shadow-sm'
-                    : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
-                } whitespace-pre-line`}
+                className={`max-w-xs px-4 py-2 rounded-2xl text-sm ${message.isBot
+                  ? 'bg-white text-gray-800 border border-gray-200 shadow-sm'
+                  : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
+                  } whitespace-pre-line`}
               >
                 <p>{message.text}</p>
                 <p className={`text-xs mt-1 ${message.isBot ? 'text-gray-500' : 'text-blue-200'}`}>
