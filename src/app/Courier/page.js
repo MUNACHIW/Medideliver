@@ -38,7 +38,7 @@ const couriers = [
         bio: "Fast and reliable medicine delivery specialist.",
         lat: 40.7580,
         lng: -73.9855,
-        image: "/courier.png", // <-- Add image
+        image: "/courier.png",
     },
     {
         id: 2,
@@ -57,7 +57,7 @@ const couriers = [
         bio: "Experienced courier with a focus on safety and punctuality.",
         lat: 40.6782,
         lng: -73.9442,
-        image: "/courier.png", // <-- Add image
+        image: "/courier.png",
     },
     {
         id: 3,
@@ -76,7 +76,7 @@ const couriers = [
         bio: "Specialist in urgent and express deliveries.",
         lat: 40.7282,
         lng: -73.7949,
-        image: "/courier.png", // <-- Add image
+        image: "/courier.png",
     }
 ];
 
@@ -185,11 +185,17 @@ function BookingModal({ courier, isOpen, onClose, onConfirm }) {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50 ">
-            <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-hidden">
-                <div className="p-6 border-b flex items-center justify-between">
+        <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-[9999]"
+            style={{ zIndex: 9999 }}
+        >
+            <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto relative z-[10000]">
+                <div className="p-6 border-b flex items-center justify-between sticky top-0 bg-white rounded-t-2xl">
                     <h3 className="text-xl font-bold text-gray-800">Book Courier</h3>
-                    <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
+                    <button
+                        onClick={onClose}
+                        className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    >
                         <XMarkIcon className="h-5 w-5 text-gray-500" />
                     </button>
                 </div>
@@ -206,7 +212,7 @@ function BookingModal({ courier, isOpen, onClose, onConfirm }) {
                             value={formData.address}
                             onChange={e => updateFormData("address", e.target.value)}
                             placeholder="Enter your address"
-                            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none"
                             required
                         />
                     </div>
@@ -215,7 +221,7 @@ function BookingModal({ courier, isOpen, onClose, onConfirm }) {
                         <select
                             value={formData.deliveryType}
                             onChange={e => updateFormData("deliveryType", e.target.value)}
-                            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none"
                         >
                             <option value="standard">Standard</option>
                             <option value="express">Express</option>
@@ -228,14 +234,14 @@ function BookingModal({ courier, isOpen, onClose, onConfirm }) {
                             onChange={e => updateFormData("notes", e.target.value)}
                             rows={3}
                             placeholder="Any special instructions?"
-                            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 resize-none"
+                            className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 resize-none focus:outline-none"
                         />
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 pt-4">
                         <button
                             type="button"
                             onClick={onClose}
-                            className="flex-1 py-3 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200"
+                            className="flex-1 py-3 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
                         >
                             Cancel
                         </button>
@@ -243,7 +249,7 @@ function BookingModal({ courier, isOpen, onClose, onConfirm }) {
                             type="button"
                             onClick={handleSubmit}
                             disabled={isSubmitting || !formData.address}
-                            className="flex-1 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                            className="flex-1 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all"
                         >
                             {isSubmitting ? "Booking..." : "Confirm Booking"}
                         </button>
@@ -252,17 +258,6 @@ function BookingModal({ courier, isOpen, onClose, onConfirm }) {
             </div>
         </div>
     );
-}
-
-// Helper to create a custom icon with the courier's image
-function createCourierIcon(imageUrl) {
-    return L.icon({
-        iconUrl: imageUrl,
-        iconSize: [48, 48],
-        iconAnchor: [24, 48],
-        popupAnchor: [0, -48],
-        className: "courier-marker-icon",
-    });
 }
 
 const CourierMap = dynamic(() => import("./CourierMap"), { ssr: false });
@@ -332,22 +327,16 @@ export default function Courier() {
         setTimeout(() => setBookingConfirmed(false), 3000);
     };
 
+    const handleCourierSelect = (courier) => {
+        setSelectedCourier(courier);
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
-
             <div className="max-w-7xl mx-auto px-4 py-8">
                 {/* Header */}
-                {/* <div className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                        Find a <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Medicine Courier</span>
-                    </h1>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        Fast, safe, and reliable medicine delivery to your door.
-                    </p>
-                </div> */}
                 <div className="flex justify-between items-center mb-8">
                     <div>
-
                         <Link href="/overview">
                             <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors">
                                 <ArrowLeftIcon className="h-5 w-5" />
@@ -356,6 +345,7 @@ export default function Courier() {
                         </Link>
                     </div>
                 </div>
+
                 {/* Express Banner */}
                 <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-4 rounded-xl mb-8 shadow-lg">
                     <div className="flex items-center justify-between">
@@ -371,6 +361,7 @@ export default function Courier() {
                         </button>
                     </div>
                 </div>
+
                 {/* Search and Filters */}
                 <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -414,19 +405,44 @@ export default function Courier() {
                         </select>
                     </div>
                 </div>
+
                 {/* Results */}
                 <div className="mb-6">
                     <p className="text-gray-600">
                         Showing <span className="font-semibold">{filteredCouriers.length}</span> couriers
                     </p>
                 </div>
-                {/* Map Section */}
+
+                {/* Enhanced Map Section */}
                 <div className="mb-8">
-                    <h2 className="text-lg font-semibold mb-2 text-gray-700">Courier Locations</h2>
-                    <div className="rounded-2xl overflow-hidden shadow-lg" style={{ height: "350px" }}>
-                        <CourierMap couriers={filteredCouriers} />
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-2xl font-bold text-gray-800">Find Couriers Near You</h2>
+                        <div className="flex items-center space-x-4 text-sm text-gray-600">
+                            <div className="flex items-center space-x-2">
+                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span>Available ({filteredCouriers.filter(c => c.availability.includes('now')).length})</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <span>Express ({filteredCouriers.filter(c => c.isExpress).length})</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bg-white rounded-2xl shadow-xl overflow-hidden relative" style={{ height: "500px", zIndex: 1 }}>
+                        <CourierMap
+                            couriers={filteredCouriers}
+                            onBook={handleBook}
+                            selectedCourier={selectedCourier}
+                            onCourierSelect={handleCourierSelect}
+                        />
+                    </div>
+                    <div className="mt-4 text-center">
+                        <p className="text-sm text-gray-500">
+                            Click on any courier marker to see details • Drag to explore • Use controls to center on your location
+                        </p>
                     </div>
                 </div>
+
                 {/* Couriers Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredCouriers.map(courier => (
@@ -437,6 +453,7 @@ export default function Courier() {
                         />
                     ))}
                 </div>
+
                 {/* Empty State */}
                 {filteredCouriers.length === 0 && (
                     <div className="text-center py-16">
@@ -451,6 +468,7 @@ export default function Courier() {
                         </button>
                     </div>
                 )}
+
                 {/* Booking Modal */}
                 <BookingModal
                     courier={selectedCourier}
@@ -458,9 +476,10 @@ export default function Courier() {
                     onClose={() => setShowBookingModal(false)}
                     onConfirm={handleBookingConfirm}
                 />
+
                 {/* Booking Confirmation */}
                 {bookingConfirmed && (
-                    <div className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-xl shadow-lg z-50">
+                    <div className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-xl shadow-lg z-[9998]">
                         <div className="flex items-center space-x-2">
                             <CheckCircleIcon className="h-5 w-5" />
                             <span className="font-semibold">Booking Confirmed!</span>
