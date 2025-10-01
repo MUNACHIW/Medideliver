@@ -87,114 +87,7 @@ export default function Career() {
     const { favoriteCount } = useFavorites();
     return (
         <main className="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
-            <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-200">
-                <nav className="max-w-7xl mx-auto px-4 py-4">
-                    <div className="flex justify-between items-center">
-                        <Link
-                            href="/overview"
-                            className="flex items-center text-2xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-300"
-                        >
-                            <Image
-                                src="/Aicon.png"
-                                alt="Medideliver Logo"
-                                width={40}
-                                height={40}
-                                className="mr-3 hover:scale-110 transition-transform duration-300"
-                            />
-                            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                                Medideliver
-                            </span>
-                        </Link>
 
-                        {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center space-x-8">
-                            <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
-                                <MagnifyingGlassIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-                            </button>
-                            <button className="relative p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
-                                <ChatBubbleOvalLeftIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-                                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
-                                    3
-                                </span>
-                            </button>
-                            <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
-                                <DocumentPlusIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-                            </button>
-                            <Link href="/favorites" className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
-                                <HeartIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-                                {favoriteCount ? (
-                                    <span className="absolute top-4 left-196 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
-                                        {favoriteCount}
-                                    </span>
-                                ) : null}
-                            </Link>
-                        </div>
-
-                        {/* User Profile & Upgrade */}
-                        <div className="hidden md:flex items-center space-x-4">
-                            <button className="p-1 rounded-full hover:bg-blue-50 transition-colors duration-300">
-                                <UserCircleIcon className="h-10 w-10 text-gray-600 hover:text-blue-600" />
-                            </button>
-                            <Link
-                                href="/upgrade"
-                                className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-2 rounded-full hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold"
-                            >
-                                Upgrade
-                            </Link>
-                        </div>
-
-                        {/* Mobile Menu Button */}
-                        <button
-                            className="md:hidden p-2 rounded-full hover:bg-blue-50 transition-colors duration-300"
-                            onClick={toggleMenu}
-                            aria-label="Toggle navigation menu"
-                        >
-                            {isMenuOpen ? (
-                                <XMarkIcon className="h-6 w-6 text-gray-700" />
-                            ) : (
-                                <Bars3Icon className="h-6 w-6 text-gray-700" />
-                            )}
-                        </button>
-                    </div>
-
-                    {/* Mobile Navigation */}
-                    {isMenuOpen && (
-                        <div className="md:hidden mt-4 p-4 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200">
-                            <div className="flex items-center justify-around mb-4">
-                                <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300">
-                                    <MagnifyingGlassIcon className="h-6 w-6 text-gray-600" />
-                                </button>
-                                <button className="relative p-2 rounded-full hover:bg-blue-50 transition-colors duration-300">
-                                    <ChatBubbleOvalLeftIcon className="h-6 w-6 text-gray-600" />
-                                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                                        3
-                                    </span>
-                                </button>
-                                <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300">
-                                    <DocumentPlusIcon className="h-6 w-6 text-gray-600" />
-                                </button>
-                                <Link href="/favorites" className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
-                                    <HeartIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-                                    {favoriteCount ? (
-                                        <span className="absolute top-4 left-196 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
-                                            {favoriteCount}
-                                        </span>
-                                    ) : null}
-                                </Link>
-                            </div>
-                            <div className="flex items-center justify-center space-x-4">
-                                <UserCircleIcon className="h-10 w-10 text-gray-600" />
-                                <Link
-                                    href="/upgrade"
-                                    className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-2 rounded-full hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-lg font-semibold"
-                                >
-                                    Upgrade
-                                </Link>
-                            </div>
-                        </div>
-                    )}
-                </nav>
-            </header>
             <section className="text-center py-16 px-4">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                     Choose From  our <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Commuinity Jobs</span>
@@ -206,7 +99,7 @@ export default function Career() {
                     </div>
                 </div>
             </section>
-            <section className="py-16 px-4">
+            <section className="py-2 px-4">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Our Job Applications </h2>
                     <div className="flex flex-wrap justify-center gap-8">

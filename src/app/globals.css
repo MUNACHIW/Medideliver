@@ -44,6 +44,10 @@
   padding:10px;  
   border-radius:4px;
 }
+.inputboard{
+  outline:none;
+  border:none;
+}
 .Googleauth{
   border:none;
   color: black;

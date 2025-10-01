@@ -178,7 +178,16 @@ function ServiceCard({ tag, color, title, text, image, button, href = "#" }) {
 
 export default function Overview() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const toggleMenu = useCallback(() => setIsMenuOpen(!isMenuOpen), []);
+    const toggleMenu = () => {
+        if (isMenuOpen === false) {
+            setIsMenuOpen(true)
+        }
+        else {
+            setIsMenuOpen(false)
+        }
+    }
+
+
 
     // Enhanced data with ratings and better organization
     const caregivers = [
@@ -257,7 +266,7 @@ export default function Overview() {
     return (
         <main className="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
             {/* Enhanced Header */}
-            <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-200">
+            <header className="bg-white/80 backdrop-blur-md  sticky top-0 z-50 border-b border-gray-200">
                 <nav className="max-w-7xl mx-auto px-4 py-4">
                     <div className="flex justify-between items-center">
                         <Link
@@ -290,10 +299,10 @@ export default function Overview() {
                             <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
                                 <DocumentPlusIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
                             </button>
-                            <Link href="/favorites" className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
+                            <Link href="/favorites" className="p-2 r rounded-full hover:bg-blue-50 transition-colors duration-300 group relative">
                                 <HeartIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
                                 {favoriteCount ? (
-                                    <span className="absolute top-4 left-196 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
+                                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
                                         {favoriteCount}
                                     </span>
                                 ) : null}
@@ -302,17 +311,7 @@ export default function Overview() {
                         </div>
 
                         {/* User Profile & Upgrade */}
-                        <div className="hidden md:flex items-center space-x-4">
-                            <button className="p-1 rounded-full hover:bg-blue-50 transition-colors duration-300">
-                                <UserCircleIcon className="h-10 w-10 text-gray-600 hover:text-blue-600" />
-                            </button>
-                            <Link
-                                href="/upgrade"
-                                className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-2 rounded-full hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold"
-                            >
-                                Upgrade
-                            </Link>
-                        </div>
+
 
                         {/* Mobile Menu Button */}
                         <button
@@ -344,24 +343,17 @@ export default function Overview() {
                                 <button className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300">
                                     <DocumentPlusIcon className="h-6 w-6 text-gray-600" />
                                 </button>
-                                <Link href="/favorites" className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group">
+                                <Link href="/favorites" className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-300 group relative">
                                     <HeartIcon className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
                                     {favoriteCount ? (
-                                        <span className="absolute top-4 left-196 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
+                                        <span className="absolute -top-1
+                                         -right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse">
                                             {favoriteCount}
                                         </span>
                                     ) : null}
                                 </Link>
                             </div>
-                            <div className="flex items-center justify-center space-x-4">
-                                <UserCircleIcon className="h-10 w-10 text-gray-600" />
-                                <Link
-                                    href="/upgrade"
-                                    className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-2 rounded-full hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-lg font-semibold"
-                                >
-                                    Upgrade
-                                </Link>
-                            </div>
+
                         </div>
                     )}
                 </nav>
