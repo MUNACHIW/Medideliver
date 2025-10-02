@@ -416,17 +416,7 @@ export default function Courier() {
                 {/* Enhanced Map Section */}
                 <div className="mb-8">
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-2xl font-bold text-gray-800">Find Couriers Near You</h2>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
-                            <div className="flex items-center space-x-2">
-                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                                <span>Available ({filteredCouriers.filter(c => c.availability.includes('now')).length})</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <span>Express ({filteredCouriers.filter(c => c.isExpress).length})</span>
-                            </div>
-                        </div>
+                        <h2 className="text-2xl font-bold text-gray-800">Find Couriers </h2>
                     </div>
                     <div className="bg-white rounded-2xl shadow-xl overflow-hidden relative" style={{ height: "500px", zIndex: 1 }}>
                         <CourierMap

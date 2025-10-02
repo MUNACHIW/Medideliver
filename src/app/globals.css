@@ -25,6 +25,35 @@
     align-items: center;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
+/* Universal scrollbar hiding */
+* {
+    -ms-overflow-style: none;        /* IE and Edge */
+    scrollbar-width: none;           /* Firefox */
+}
+
+*::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;         /* Chrome, Safari, Edge */
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    -ms-overflow-style: none;        /* IE and Edge */
+    scrollbar-width: none;           /* Firefox */
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;         /* Chrome, Safari, Edge */
+}
+select:disabled {
+    background-color: white;
+    color: black;
+    pointer-events: none;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background:white;
