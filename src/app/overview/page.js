@@ -311,20 +311,27 @@ export default function Overview() {
                         </div>
 
                         {/* User Profile & Upgrade */}
+                        <div className="flex items-center justify-center space-x-4">
+                            <Link href="/profile" className="flex items-center text-gray-700 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-2 py-1 rounded-xl text-sm font-semibold hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                <UserCircleIcon className="h-10 w-10 text-white-600 group-hover:text-blue-600" />
 
+                                <p>John Smith</p>
+                            </Link>
+                            <button
+                                className="md:hidden p-2 rounded-full hover:bg-blue-50 transition-colors duration-300"
+                                onClick={toggleMenu}
+                                aria-label="Toggle navigation menu"
+                            >
+                                {isMenuOpen ? (
+                                    <XMarkIcon className="h-6 w-6 text-gray-700" />
+                                ) : (
+                                    <Bars3Icon className="h-6 w-6 text-gray-700" />
+                                )}
+                            </button>
+                        </div>
 
                         {/* Mobile Menu Button */}
-                        <button
-                            className="md:hidden p-2 rounded-full hover:bg-blue-50 transition-colors duration-300"
-                            onClick={toggleMenu}
-                            aria-label="Toggle navigation menu"
-                        >
-                            {isMenuOpen ? (
-                                <XMarkIcon className="h-6 w-6 text-gray-700" />
-                            ) : (
-                                <Bars3Icon className="h-6 w-6 text-gray-700" />
-                            )}
-                        </button>
+
                     </div>
 
                     {/* Mobile Navigation */}

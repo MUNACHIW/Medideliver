@@ -27,7 +27,8 @@
 }
 /* Universal scrollbar hiding */
 * {
-    -ms-overflow-style: none;        /* IE and Edge */
+    -ms-overflow-style: none;
+      -webkit-scrollbar-width:none;         /* IE and Edge */
     scrollbar-width: none;           /* Firefox */
 }
 
@@ -40,10 +41,14 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    -ms-overflow-style: none;        /* IE and Edge */
-    scrollbar-width: none;           /* Firefox */
+    -ms-overflow-style: none;   
+    -webkit-scrollbar-width:none;     /* IE and Edge */
+    scrollbar-width: none; 
+ cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><polygon points='16,0 32,16 16,32 0,16' fill='%232659F2' stroke='%23FFFFFF' stroke-width='2'/></svg>") 16 0, auto;;
 }
-
+.cursorinit{
+  cursor:pointer !important;
+}
 body::-webkit-scrollbar {
     width: 0px;
     height: 0px;

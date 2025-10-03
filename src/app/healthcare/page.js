@@ -452,7 +452,7 @@ export default function Healthcare() {
                         <div>
 
                             <Link href="/overview">
-                                <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors">
+                                <button className="flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors cursorinit    bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-xl text-sm font-semibold hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                     <ArrowLeftIcon className="h-5 w-5" />
                                     <span>back to overview</span>
                                 </button>
