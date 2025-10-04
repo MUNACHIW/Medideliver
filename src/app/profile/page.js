@@ -52,7 +52,7 @@ export default function Profile() {
                         </button>
                     </Link>
                     <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                        My Profile
+                        Profile
                     </h1>
                 </div>
 
