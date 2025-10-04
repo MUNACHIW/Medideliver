@@ -23,8 +23,8 @@ export default function Profile() {
     const [profileData, setProfileData] = useState({
         name: "John Smith",
         email: "john.smith@email.com",
-        phone: "+234 801 234 5678",
-        location: "Port Harcourt, Rivers State",
+        phone: "+134994004040",
+        location: "Austin, Texas",
         joinDate: "January 2024",
         bio: "Looking for quality medical services and reliable delivery options.",
         balance: "$450.00"
