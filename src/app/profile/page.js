@@ -348,7 +348,7 @@ export default function Profile() {
                                     <div className="space-y-3">
                                         <button className="w-full text-left px-4 py-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                                             <p className="font-semibold text-gray-800">Language & Region</p>
-                                            <p className="text-sm text-gray-500">English (Nigeria)</p>
+                                            <p className="text-sm text-gray-500">English (United States)</p>
                                         </button>
                                         {/* <button className="w-full text-left px-4 py-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                                             <p className="font-semibold text-gray-800">Privacy Settings</p>
