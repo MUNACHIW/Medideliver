@@ -29,6 +29,27 @@ function EnhancedChatbot() {
     needsHumanHelp: false
   });
 
+  useEffect(() => {
+    const ping = () => {
+      fetch("https://medibackend-gcpj.onrender.com/api/heartbeat/")
+        .then(() => console.log("✅ Backend kept awake"))
+        .catch(() => console.warn("⚠️ Failed to ping backend"));
+    };
+
+    // First call immediately
+    ping();
+
+    // Then repeat every 5 minutes (300,000 ms)
+    const interval = setInterval(ping, 300000);
+
+    // Cleanup when user leaves page
+    return () => clearInterval(interval);
+  }, []);
+
+
+
+
+
   // Enhanced knowledge base with comprehensive information
   const knowledgeBase = {
     services: {

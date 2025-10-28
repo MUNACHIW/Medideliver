@@ -17,7 +17,6 @@ export const metadata = {
   name: "format-detection",
   content: "telephone=no, date=no, email=no, address=no",
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
